@@ -6,7 +6,7 @@ const cors = require("cors");
 const logger = require("morgan");
 
 app.use(cors());
-app.use(logger("tiny"));
+app.use(logger("dev"));
 
 // MW auth
 app.use((req,res,next)=>{
