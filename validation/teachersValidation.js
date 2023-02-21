@@ -10,12 +10,12 @@ exports.teachersPost = [
     body("image").isString().withMessage("image is require")
 ]
 exports.teachersUpdate = [
-    body("_id").isMongoId().withMessage("id must be object ID"),
+    param("_id").isMongoId().withMessage("id must be object ID"),
     body("fullname").optional().isString().withMessage("full name is require and must be string"),
     body("password").optional().isString().withMessage("password is require"),
     body("email").optional().isEmail().withMessage("email is require and must be with email format"),
     body("image").optional().isString().withMessage("image is require")
 ]
 exports.teachersDelete = [
-    body("_id").isMongoId().withMessage("id must be object ID"),
+    param("_id").isMongoId().withMessage("id must be object ID"),
 ]

@@ -10,9 +10,9 @@ const {getChildByid,childPost,childUpdate,childDelete} = require("../validation/
 router.route("/child")
     .get(childrensController.getAllchildren)
     .post(childPost,validator,childrensController.addChild)
-    .patch(childUpdate,validator,childrensController.updateChild)
     
 router.route("/child/:_id")
     .get(getChildByid,validator,childrensController.getChildById)
+    .patch(childUpdate,validator,childrensController.updateChild)
     .delete(childDelete,validator,childrensController.deleteChild)
 module.exports = router;

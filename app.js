@@ -1,14 +1,23 @@
 const express = require('express');
 const app = express();
+const mongoose = require("mongoose");
+
 const cors = require("cors");
 const logger = require("morgan");
 
 const teachersRoute = require("./routes/teachersRoute");
 const childrenRoute = require("./routes/childRoute");
 const classRoute = require("./routes/ClassRoute");
-
+// ========= server =========
 const port = process.env.PORT || 8080;
-
+mongoose.set("strictQuery",true);
+mongoose.connect('mongodb://127.0.0.1:27017/nursery-system')
+    .then(()=> {
+    console.log("DB connected");
+    app.listen(port, () => console.log(`listening on http://localhost:${port}`));
+})
+    .catch((error)=> console.log(`DB connection error ${error}`))
+//=======================================
 
 
 app.use(cors());
@@ -32,4 +41,3 @@ app.use((err,req,res,next)=>{
     res.status(status).json({message:err+""});
 })
 
-app.listen(port, () => console.log(`listening on http://localhost:${port}`));

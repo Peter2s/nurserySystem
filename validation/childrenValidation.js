@@ -3,7 +3,7 @@ exports.getChildByid = [
     param("_id").isInt().withMessage("id must be number")
 ]
 exports.childPost = [
-    body("_id").isInt().withMessage("id must be number"),
+    //body("_id").isInt().withMessage("id must be number"),
     body("fullName").isString().withMessage("fullName must be string"),
     body("age").isInt({max:12}).withMessage("age must be number and the max is 12"),
     body("level").isIn(["PreKG","KG1","KG2"]).withMessage("level must be in [PreKG,KG1,KG2] "),
@@ -13,7 +13,7 @@ exports.childPost = [
     body("address.building").isInt().withMessage("city is require and number")
 ];
 exports.childUpdate = [
-    body("_id").isInt().withMessage("id must be number"),
+    param("_id").isInt().withMessage("id must be number"),
     body("fullName").optional().isString().withMessage("fullName must be string"),
     body("age").optional().isInt({max:12}).withMessage("age must be number and the max is 12"),
     body("level").optional().isIn(["PreKG","KG1","KG2"]).withMessage("level must be in [PreKG,KG1,KG2] "),
