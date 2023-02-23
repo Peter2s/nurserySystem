@@ -7,7 +7,7 @@ exports.teachersPost = [
     body("fullname").isString().withMessage("full name is require and must be string"),
     body("password").isString().withMessage("password is require"),
     body("email").isEmail().withMessage("email is require and must be with email format"),
-    body("image").isString().withMessage("image is require")
+    body("image").optional().isString().withMessage("image is require")
 ]
 exports.teachersUpdate = [
     param("_id").isMongoId().withMessage("id must be object ID"),

@@ -17,12 +17,13 @@ exports.getTeacherById = (req,res)=>{
 }
 exports.addTeacher = async (req,res,next)=>{
     const passwordHashed = await bcrypt.hash(req.body.password, saltRounds)
+    const{file} = req;
     new TeachersSchema({
         _id:req.body._id,
         fullname:req.body.fullname,
         password:passwordHashed,
         email:req.body.email,
-        image:req.body.image
+        image:file.path || null
     }).save()
     .then(data=> res.status(201).json({data}))
     .catch(error=>next(error))

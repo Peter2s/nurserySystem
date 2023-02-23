@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const logger = require("morgan");
 
+const authenticationMW = require('./Core/Auth/authenticationMW');
+const loginRoute = require("./routes/loginRoute");
 const teachersRoute = require("./routes/teachersRoute");
 const childrenRoute = require("./routes/childRoute");
 const classRoute = require("./routes/ClassRoute");
@@ -26,6 +28,13 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
+
+//login
+app.use(loginRoute);
+//authentication MW
+app.use(authenticationMW);
+
+//routing
 app.use(teachersRoute);
 app.use(childrenRoute);
 app.use(classRoute);
