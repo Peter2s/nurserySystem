@@ -9,12 +9,10 @@ const checkUserPassword =  async ( password,passwordHash)=> {
     const match = await bcrypt.compare(password, passwordHash);
     if(match) return true;
     return false
-
 }
-
 module.exports = (req,res,next)=>{
     if(req.body.fullname == 'admin' && req.body.password == '123'){
-        const token = jwt.sign({id:10,role:'admin'},'ITI',{expiresIn:'1h'});
+        const token = jwt.sign({id:10,role:'admin'},process.env.SECRET_KEY,{expiresIn:'24h'});
         res.json(token);
     }
     else{
@@ -29,8 +27,8 @@ module.exports = (req,res,next)=>{
                     if(!checkUserPassword(req.body.password,data.password))
                         next(error);
                     const token = jwt.sign({id:data._id
-                        ,role:'teacher'},'ITI',
-                        {expiresIn:'1h'});
+                        ,role:'teacher'},process.env.SECRET_KEY,
+                        {expiresIn:'24h'});
                     res.json(token);
                 }
             })

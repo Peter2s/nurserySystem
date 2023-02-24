@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
 
+require('dotenv').config({path: './.env'});
 const cors = require("cors");
 const logger = require("morgan");
 
@@ -27,7 +28,6 @@ app.use(logger("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-
 
 //login
 app.use(loginRoute);
